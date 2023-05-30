@@ -1,4 +1,4 @@
-program am260hw3
+program advection
     use utility 
     implicit none
     ! ----- global variables ----- !
@@ -21,11 +21,7 @@ program am260hw3
     !call bc_setup(u0, uN, u, x)
     call disc_bc_setup(u0, uN, u, x)
     ! (4) perform numerical method
-    !   uncomment for each particular problem 
-    !call advection_prob_5(u, u0)
-    !call advection_prob_6(u, u0)
-    !call advection_prob_7(u, u0) 
-    call advection_prob_8(u, u0)
+    call advection_FD(u, u0)
     ! (5) Write to output file 
     call output()
 
@@ -150,7 +146,7 @@ program am260hw3
         ! Solving advection equation      !
         ! u_t - au_x = 0                  !
         ! ------------------------------- !
-        subroutine advection_prob_5(u, u0)  
+        subroutine advection_FD(u, u0)  
             use utility
             implicit none
             real (fp), dimension(:), intent(inout) :: u0
@@ -174,7 +170,7 @@ program am260hw3
             end do
         end subroutine
 
-        subroutine advection_prob_6(u, u0)  
+        subroutine advection_LF(u, u0)  
             use utility
             implicit none
             real (fp), dimension(:), intent(inout) :: u0
@@ -198,7 +194,7 @@ program am260hw3
             end do
         end subroutine
 
-        subroutine advection_prob_7(u, u0)  
+        subroutine advection_LF(u, u0)  
             use utility
             implicit none
             real (fp), dimension(:), intent(inout) :: u0
@@ -218,7 +214,7 @@ program am260hw3
             end do
         end subroutine
 
-        subroutine advection_prob_8(u, u0)  
+        subroutine advection_LW(u, u0)  
             use utility
             implicit none
             real (fp), dimension(:), intent(inout) :: u0
