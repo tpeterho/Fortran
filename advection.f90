@@ -51,9 +51,9 @@ program advection
             real (fp), intent(out) :: x0, xf, t0, tf, a
 
             ! ---- initial parameters ---- !
-            N = 128      ! space resolution 
-            tN = 1e4  ! time resolution 
-            x0 = -1.0    ! left boundary  
+            N = 128     ! space resolution 
+            tN = 1e4    ! time resolution 
+            x0 = -1.0   ! left boundary  
             xf = 1.0    ! right boundary 
             t0 = 0.0    ! initial time 
             tf = 1.0    ! final time 
@@ -89,15 +89,12 @@ program advection
                 x(i) = x0 + (i - 0.5) * dx
             end do 
 
-            !write(*,*) (x(i), i = 1,n)
-
             ! temporal grid points 
             do i = 1, tN
                 t(i) = i * dt
             end do 
 
             C = a * dt / (2.0 * dx) 
-            !C = 0.8
         end subroutine 
 
         ! ------------------------------- !
@@ -136,8 +133,6 @@ program advection
                 end if
             end do 
 
-            !write(*,*) (u0(j), j = 1,N)
-
             uN = u0              ! initializing timestep 
             u  = 0.0             ! initializing solution
         end subroutine
@@ -166,7 +161,7 @@ program advection
                 u0(2) = u0(N+2)     ! periodic boundary condition
                 u0(N+3) = u0(3)
                 u0(N+4) = u0(4)
-                u(j,:) = uN       ! save time series solution
+                u(j,:) = u0       ! save time series solution
             end do
         end subroutine
 
@@ -190,7 +185,7 @@ program advection
                 u0(2) = u0(N+2)     ! periodic boundary condition
                 u0(N+3) = u0(3)
                 u0(N+4) = u0(4)
-                u(j,:) = uN     ! save time series solution
+                u(j,:) = u0     ! save time series solution
             end do
         end subroutine
 
@@ -210,7 +205,7 @@ program advection
                 u0(2) = u0(N+2)     ! periodic boundary condition
                 u0(N+3) = u0(3)
                 u0(N+4) = u0(4)
-                u(j,:) = uN        ! save time series solution
+                u(j,:) = u0        ! save time series solution
             end do
         end subroutine
 
@@ -230,7 +225,7 @@ program advection
                 u0(2) = u0(N+2)     ! periodic boundary condition
                 u0(N+3) = u0(3)
                 u0(N+4) = u0(4)
-                u(j,:) = uN     ! save time series solution
+                u(j,:) = u0         ! save time series solution
             end do
         end subroutine
 end program 
